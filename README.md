@@ -5,3 +5,4 @@
 
 #Steps performed to generate this app:
 # npm init -y
+# npm install react react-dom
