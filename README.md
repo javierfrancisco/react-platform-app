@@ -21,3 +21,8 @@ Steps performed to generate this app:
 #Edit webpack.config.js
 
 Add build and start scripts in config file
+
+#Run this app
+
+##npm install
+##npm start
