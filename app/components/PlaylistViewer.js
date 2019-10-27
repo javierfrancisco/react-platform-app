@@ -46,7 +46,8 @@ function TrackViewer() {
 
     const post = {
       title : playlist.tracks.items[index].track.name,
-      body : playlist.tracks.items[index].track.name
+      body : playlist.tracks.items[index].track.name,
+      imgSrc: playlist.tracks.items[index].track.album.images[0].url
     };
 
 
@@ -80,14 +81,25 @@ function TrackViewer() {
 
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
-      {index === postIds.length - 1 
-        ? <p>No more posts</p>
-        : <button onClick={incrementIndex}>
-            Next Post
-          </button>}
+    <div className="playlist-container">
+      <div className="playlist-header">
+        Playslist Name: xxx
+      </div>
+      <div className="track-hero">
+        <img src={post.imgSrc} className="track-image"/>
+      </div>
+      <div className="track-info">
+        <h1>{post.title}</h1>
+        <p>{post.body}</p>
+      </div>
+      <div className="playlist-controller">
+      controller
+        {index === postIds.length - 1 
+            ? <p>No more posts</p>
+            : <button onClick={incrementIndex}>
+                Next Post
+              </button>}
+      </div>
     </div>
   );
 }

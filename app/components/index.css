@@ -3,12 +3,48 @@
 }
 
 
+.playlist-container {
+  display: grid;
+  grid-gap: 10px;
+  font-family: Arial, sans-serif;
+  grid-template-rows: 40px 150px 150px 40px;
+  grid-template-columns: 300px 600px;
+}
+
+.playlist-header {
+  grid-row: 1/2;
+  grid-column: 1/3;
+
+}
+
+.playlist-controller {
+  grid-row: 3/4;
+  grid-column: 2/3;
+}
+
+.track-hero {
+  grid-row: 2/4;
+  grid-column: 1/2;
+}
+
+.track-info {
+  grid-row: 2/3;
+  grid-column: 2/3;
+}
+
+.track-image {
+  max-width: 100%;
+  width: 100%;
+  min-height: 248px;
+  max-height: 248px;
+}
+
 
 .container {
   position: fixed;
   overflow: hidden;
   width: 100%;
-  height: 30%;
+  height: 100%;
 }
 
 .container  > div {
