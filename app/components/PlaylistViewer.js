@@ -45,9 +45,10 @@ function TrackViewer() {
     setLoading(true)
 
     const post = {
-      title : playlist.tracks.items[index].track.name,
-      body : playlist.tracks.items[index].track.name,
-      imgSrc: playlist.tracks.items[index].track.album.images[0].url
+      playlistName: playlist.name,
+      title :       playlist.tracks.items[index].track.name,
+      body :        playlist.tracks.items[index].track.name,
+      imgSrc:       playlist.tracks.items[index].track.album.images[0].url
     };
 
 
@@ -83,7 +84,7 @@ function TrackViewer() {
   return (
     <div className="playlist-container">
       <div className="playlist-header">
-        Playslist Name: xxx
+        Playslist: {post.playlistName} 
       </div>
       <div className="track-hero">
         <img src={post.imgSrc} className="track-image"/>
@@ -96,9 +97,17 @@ function TrackViewer() {
       controller
         {index === postIds.length - 1 
             ? <p>No more posts</p>
-            : <button onClick={incrementIndex}>
+            : <button onClick={incrementIndex} className="playlist-button">
+                Previous Post
+              </button>
+            }
+
+        {index === postIds.length - 1 
+            ? <p>No more posts</p>
+            : <button onClick={incrementIndex} className="playlist-button">
                 Next Post
-              </button>}
+              </button>
+            }
       </div>
     </div>
   );
