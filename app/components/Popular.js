@@ -4,7 +4,7 @@ import { fetchPopularRepos } from '../utils/api'
 
 
 function MenuNav ({ selected, onUpdateOption}) {
-	const menuOptions = ['All', 'Home', 'Projects', 'Playlists', 'Galleries', 'News']
+	const menuOptions = ['All', 'Java', 'Home', 'Projects', 'Playlists', 'Galleries', 'News']
 	return (
 		<ul className='flex-center'>
 			{menuOptions.map((menuOption) => (
@@ -34,7 +34,7 @@ export default class Popular extends React.Component {
 
 		this.state = {
 			selectedOption: 'Home',
-			repos: null,
+			repos: {},
 			error: null
 		}
 		this.updateOption = this.updateOption.bind(this);
@@ -49,26 +49,38 @@ export default class Popular extends React.Component {
 
 		this.setState({
 			selectedOption,
-			error: null,
-			repos: null
-		})
-
-		fetchPopularRepos(selectedOption)
-		.then((repos) => this.setState({
-			repos,
 			error: null
-		}))
-		.catch(() => {
-			console.warn('Error fetching repos', error)
-			this.setState({
-				error: 'There was an error fetching repositories'
-
-			})
 		})
+
+		if (!this.state.repos[selectedOption]) {
+			fetchPopularRepos(selectedOption)
+			.then((data) => {
+				this.setState(({ repos }) => ({
+					repos: {
+						...repos,
+						[selectedOption]: data
+					}
+				}))
+			})
+			.catch(() => {
+				console.warn('Error fetching repos', error)
+				this.setState({
+					error: 'There was an error fetching repositories'
+
+				})
+			})
+			
+		}
+
+		
 	}
 
 	isLoading () {
-		return this.state.repos === null && this.state.error === null
+
+		const { selectedOption, repos, error } = this.state
+
+		return !repos[selectedOption] && error === null
+
 	}
 
 
@@ -88,7 +100,7 @@ export default class Popular extends React.Component {
 
 				{error && <p>{error}</p>}
 
-				{repos && <pre>{JSON.stringify(repos, null, 2)}</pre>}
+				{repos[selectedOption] && <pre>{JSON.stringify(repos[selectedOption], null, 2)}</pre>}
 			</React.Fragment>
 			)
 	}
