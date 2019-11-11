@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 
 function MenuNav ({ selected, onUpdateOption}) {
@@ -18,6 +19,11 @@ function MenuNav ({ selected, onUpdateOption}) {
 			}
 		</ul>
 		)
+}
+
+MenuNav.propTypes = {
+	selected: PropTypes.string.isRequired,
+	onUpdateOption: PropTypes.func.isRequired
 }
 
 export default class Popular extends React.Component {
