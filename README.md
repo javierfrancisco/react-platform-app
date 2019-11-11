@@ -26,3 +26,11 @@ Add build and start scripts in config file
 
 ##npm install
 ##npm start
+
+
+---------
+Later steps
+
+For Nav Component do install prop-types
+
+	npm install prop-types
