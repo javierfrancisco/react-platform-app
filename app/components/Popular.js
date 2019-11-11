@@ -1,23 +1,54 @@
 import React from 'react'
 
+
+function MenuNav ({ selected, onUpdateOption}) {
+	const menuOptions = ['Home', 'Projects', 'Playlists', 'Galleries', 'News']
+	return (
+		<ul className='flex-center'>
+			{menuOptions.map((menuOption) => (
+				<li key={menuOption}>
+					<button 
+					className='btn-clear nav-link'
+					style={menuOption === selected ? {color: 'rgb(187,46,31)' } : null}
+					onClick={() => onUpdateOption(menuOption) }>
+						{menuOption}
+					</button>
+				</li>
+				))
+			}
+		</ul>
+		)
+}
+
 export default class Popular extends React.Component {
 
+	constructor (props) {
+		super(props)
+
+		this.state = {
+			selectedOption: 'Home'
+		}
+		this.updateOption = this.updateOption.bind(this);
+	}
+
+	updateOption (selectedOption) {
+
+		this.setState({
+			selectedOption
+		})
+	}
 
 	render() {
 
-		const menuOptions = ['All', 'JavaScript', 'Ruby', 'Java', 'Css', 'Python']
+		const { selectedOption } = this.state
 
 		return (
-			<ul className='flex-center'>
-				{menuOptions.map((menuOption) => (
-					<li key={menuOption}>
-						<button className='btn-clear nav-link'>
-							{menuOption}
-						</button>
-					</li>
-					))
-				}
-			</ul>
+			<React.Fragment>
+				<MenuNav
+					selected={selectedOption}
+					onUpdateOption={this.updateOption}
+				/>
+			</React.Fragment>
 			)
 	}
 
