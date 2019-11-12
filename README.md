@@ -34,3 +34,8 @@ Later steps
 For Nav Component do install prop-types
 
 	npm install prop-types
+
+
+Add icons for the app
+
+	npm install react-icons
