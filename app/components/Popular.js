@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { fetchPopularRepos } from '../utils/api'
 import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle } from 'react-icons/fa'
 import Card from './Card'
+import Loading from './Loading'
 
 function MenuNav ({ selected, onUpdateOption}) {
   const menuOptions = ['All', 'Java', 'Home', 'Projects', 'Playlists', 'Galleries', 'News']
@@ -147,7 +148,7 @@ export default class Popular extends React.Component {
           onUpdateOption={this.updateOption}
         />
 
-        {this.isLoading() && <p>LOADING</p>}
+        {this.isLoading() && <Loading text='Fetching Repos'/>}
 
         {error && <p className='center-text error'>{error}</p>}
 
